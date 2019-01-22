@@ -1,1 +1,16 @@
-{{outlet}}
+<h1>{{model.name}}</h1>
+<h2>Posts</h2>
+{{#if availablePosts}}
+<ul>
+  {{#each availablePosts as |post|}}
+    <li>{{post.title}}</li>
+  {{/each}}
+</ul>
+{{else}}
+  <p style="color:red;">Posts are not yet loaded</p>
+{{/if}}
+<hr />
+<section>
+  <h2>Repro</h2>
+  <p>In <code>mirage/config.js</code>, remove one of the records returned by the <code>/posts</code> endpoint to reproduce the issue</p>
+</section>
