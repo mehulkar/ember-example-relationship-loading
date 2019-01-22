@@ -1,6 +1,5 @@
 import Controller from '@ember/controller';
-import { get, observer } from '@ember/object';
-import { filter } from '@ember/object/computed';
+import { computed, get, observer } from '@ember/object';
 
 export default Controller.extend({
   /**
@@ -11,8 +10,8 @@ export default Controller.extend({
   /**
    * @property {Enumerable} resolvedPosts subset of async items that are resolved
    */
-  resolvedPosts: filter('model.posts.@each.isLoaded', function(item) {
-    return get(item, 'isLoaded') !== false
+  resolvedPosts: computed('model.posts.@each.isLoaded', function() {
+    return this.get('model.posts').filter(item => get(item, 'isLoaded') !== false);
   }),
 
   /**
