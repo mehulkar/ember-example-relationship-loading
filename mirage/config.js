@@ -23,4 +23,35 @@ export default function() {
 
     http://www.ember-cli-mirage.com/docs/v0.4.x/shorthands/
   */
+  this.get('/authors/1', function() {
+    return {
+      data: {
+        id: 1,
+        type: 'author',
+        attributes: {
+          name: 'John Smith'
+        },
+        relationships: {
+          posts: {
+            data: [
+              { type: 'post', id: 1 },
+              { type: 'post', id: 2 },
+              { type: 'post', id: 3 },
+              { type: 'post', id: 4 },
+            ]
+          }
+        }
+      }
+    }
+  });
+  this.get('/posts', function() {
+    return {
+      data: [
+        { id: 1, type: 'post', attributes: { title: 'Post 1'} },
+        { id: 2, type: 'post', attributes: { title: 'Post 2'} },
+        { id: 3, type: 'post', attributes: { title: 'Post 3'} },
+        { id: 4, type: 'post', attributes: { title: 'Post 4'} },
+      ]
+    }
+  })
 }
